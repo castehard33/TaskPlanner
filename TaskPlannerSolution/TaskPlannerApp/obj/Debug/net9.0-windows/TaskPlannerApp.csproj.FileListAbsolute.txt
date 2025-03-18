@@ -23,3 +23,5 @@ C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\TaskPlannerApp.pdb
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\TaskPlannerApp.genruntimeconfig.cache
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\ref\TaskPlannerApp.dll
+C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\Views\TaskFormWindow.baml
+C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\Views\TaskFormWindow.g.cs

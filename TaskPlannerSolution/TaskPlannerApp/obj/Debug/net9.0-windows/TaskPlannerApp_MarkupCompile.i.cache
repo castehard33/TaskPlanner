@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\App.xaml
-1-1644662438
+2-1908426510
 
-6550050765
+8-60402327
 204-154255182
-Views\MainWindow.xaml;
+Views\MainWindow.xaml;Views\TaskFormWindow.xaml;
 
 False
 
