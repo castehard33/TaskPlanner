@@ -29,6 +29,10 @@
                     <StackPanel x:Name="TaskStackPanel" Margin="0,10,0,10"/>
 
                     <Button Content="➕ Add Task" Foreground="White" Background="Transparent" FontSize="16" Padding="5" Click="OpenTaskForm" x:Name="AddTaskButton"/>
+
+
+
+
                 </StackPanel>
             </materialDesign:Card>
 
