@@ -59,7 +59,7 @@ namespace TaskPlannerApp.Views
 
             taskCard.Child = taskStackPanel;
 
-            TaskStackPanel.Children.Add(taskCard);
+            taskStackPanel.Children.Add(taskCard);
         }
     }
 }

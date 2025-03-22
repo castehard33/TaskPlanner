@@ -68,7 +68,7 @@ namespace TaskPlannerApp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TaskPlannerApp;V1.0.0.0;component/views/taskformwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TaskPlannerApp;component/views/taskformwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\TaskFormWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

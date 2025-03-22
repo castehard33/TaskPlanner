@@ -25,3 +25,6 @@ C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\ref\TaskPlannerApp.dll
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\Views\TaskFormWindow.baml
 C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\Views\TaskFormWindow.g.cs
+C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\obj\Debug\net9.0-windows\TaskPlannerApp_MarkupCompile.lref
+C:\Users\bmedr\Desktop\REPOs\TaskPlanner\TaskPlannerSolution\TaskPlannerApp\bin\Debug\net9.0-windows\Newtonsoft.Json.dll

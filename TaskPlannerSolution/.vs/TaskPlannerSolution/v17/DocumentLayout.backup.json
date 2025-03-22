@@ -13,6 +13,18 @@
     {
       "AbsoluteMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|c:\\users\\bmedr\\desktop\\repos\\taskplanner\\taskplannersolution\\taskplannerapp\\models\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|solutionrelative:taskplannerapp\\models\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|c:\\users\\bmedr\\desktop\\repos\\taskplanner\\taskplannersolution\\taskplannerapp\\models\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|solutionrelative:taskplannerapp\\models\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|c:\\users\\bmedr\\desktop\\repos\\taskplanner\\taskplannersolution\\taskplannerapp\\models\\taskmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|solutionrelative:taskplannerapp\\models\\taskmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|c:\\users\\bmedr\\desktop\\repos\\taskplanner\\taskplannersolution\\taskplannerapp\\models\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EFCC8F7-3823-484E-AFEC-CEC729C0428E}|TaskPlannerApp\\TaskPlannerApp.csproj|solutionrelative:taskplannerapp\\models\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +34,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskModel.cs",
+              "DocumentMoniker": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\TaskModel.cs",
+              "RelativeDocumentMoniker": "TaskPlannerApp\\Models\\TaskModel.cs",
+              "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\TaskModel.cs",
+              "RelativeToolTip": "TaskPlannerApp\\Models\\TaskModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T13:18:11.881Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -32,10 +56,9 @@
               "RelativeDocumentMoniker": "TaskPlannerApp\\Models\\MainViewModel.cs",
               "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\MainViewModel.cs",
               "RelativeToolTip": "TaskPlannerApp\\Models\\MainViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T22:07:21.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-18T22:07:21.157Z"
             },
             {
               "$type": "Document",
@@ -43,8 +66,8 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "TaskPlannerApp\\Views\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Views\\MainWindow.xaml*",
-              "RelativeToolTip": "TaskPlannerApp\\Views\\MainWindow.xaml*",
+              "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "TaskPlannerApp\\Views\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-17T17:01:43.966Z",
               "EditorCaption": ""
@@ -57,10 +80,34 @@
               "RelativeDocumentMoniker": "TaskPlannerApp\\Views\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Views\\MainWindow.xaml.cs",
               "RelativeToolTip": "TaskPlannerApp\\Views\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwDQAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-17T16:54:37.484Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BaseViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\BaseViewModel.cs",
+              "RelativeDocumentMoniker": "TaskPlannerApp\\Models\\BaseViewModel.cs",
+              "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\BaseViewModel.cs",
+              "RelativeToolTip": "TaskPlannerApp\\Models\\BaseViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T13:19:25.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RelayCommand.cs",
+              "DocumentMoniker": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\RelayCommand.cs",
+              "RelativeDocumentMoniker": "TaskPlannerApp\\Models\\RelayCommand.cs",
+              "ToolTip": "C:\\Users\\bmedr\\Desktop\\REPOs\\TaskPlanner\\TaskPlannerSolution\\TaskPlannerApp\\Models\\RelayCommand.cs",
+              "RelativeToolTip": "TaskPlannerApp\\Models\\RelayCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T13:20:21.969Z"
             }
           ]
         }

@@ -1,38 +1,50 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using TaskPlannerApp.Models;
 
 namespace TaskPlannerApp.Models
 {
-    // Klasa reprezentująca zadanie
-    public class TaskItem
+    public class MainViewModel : BaseViewModel
     {
-        public int Id { get; set; }
-        public string? Title { get; set; }
-        public string? Author { get; set; }
-        public string? Status { get; set; }
-    }
+        public ObservableCollection<TaskModel> Tasks { get; set; } = new();
 
-    // Klasa do zapisywania i wczytywania zadań w pliku JSON
-    public class TaskService
-    {
-        private const string FileName = "tasks.json";
-
-        // Zapisz listę zadań do pliku JSON
-        public void SaveTasks(List<TaskItem> tasks)
+        private string _newTaskName;
+        public string NewTaskName
         {
-            string json = JsonConvert.SerializeObject(tasks, Formatting.Indented);
-            File.WriteAllText(FileName, json);
+            get => _newTaskName;
+            set
+            {
+                _newTaskName = value;
+                OnPropertyChanged(nameof(NewTaskName));
+            }
         }
 
-        // Wczytaj listę zadań z pliku JSON
-        public List<TaskItem> LoadTasks()
+        private string _newTaskAuthor;
+        public string NewTaskAuthor
         {
-            if (!File.Exists(FileName))
-                return new List<TaskItem>();
+            get => _newTaskAuthor;
+            set
+            {
+                _newTaskAuthor = value;
+                OnPropertyChanged(nameof(NewTaskAuthor));
+            }
+        }
 
-            string json = File.ReadAllText(FileName);
-            return JsonConvert.DeserializeObject<List<TaskItem>>(json);
+        public ICommand AddTaskCommand { get; }
+
+        public MainViewModel()
+        {
+            AddTaskCommand = new RelayCommand(AddTask);
+        }
+
+        private void AddTask(object parameter)
+        {
+            if (!string.IsNullOrWhiteSpace(NewTaskName) && !string.IsNullOrWhiteSpace(NewTaskAuthor))
+            {
+                Tasks.Add(new TaskModel { Name = NewTaskName, Author = NewTaskAuthor });
+                NewTaskName = string.Empty;
+                NewTaskAuthor = string.Empty;
+            }
         }
     }
 }
