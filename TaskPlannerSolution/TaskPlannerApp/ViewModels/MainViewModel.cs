@@ -10,8 +10,7 @@ namespace TaskPlannerApp.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string propertyName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public ObservableCollection<TaskModel> TasksToDo { get; set; } = [];
         public ObservableCollection<TaskModel> TasksInProgress { get; set; } = [];
@@ -36,8 +35,10 @@ namespace TaskPlannerApp.ViewModels
             {
                 TasksToDo.Add(new TaskModel { TaskName = taskForm.TaskName, TaskAuthor = taskForm.TaskAuthor });
 
-                MessageBox.Show("Zadanie zostało dodane!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Zadanie zostało dodane!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+
     }
 }

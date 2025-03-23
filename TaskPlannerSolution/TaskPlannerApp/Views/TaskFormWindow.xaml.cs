@@ -21,7 +21,7 @@ namespace TaskPlannerApp.Views
 
             if (string.IsNullOrWhiteSpace(TaskName) || string.IsNullOrWhiteSpace(TaskAuthor))
             {
-                MessageBox.Show("Wszystkie pola muszą być wypełnione!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("All texts boxes must be filled out", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
