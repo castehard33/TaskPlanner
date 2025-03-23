@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using TaskPlannerApp.ViewModels;
 
 namespace TaskPlannerApp
 {
@@ -10,5 +11,8 @@ namespace TaskPlannerApp
     public partial class App : Application
     {
     }
-
+    public static class ViewModelLocator
+    {
+        public static MainViewModel MainViewModel => new MainViewModel();
+    }
 }

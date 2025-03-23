@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using TaskPlannerApp.Models;
+using TaskPlannerApp.ViewModels;
 
 namespace TaskPlannerApp.Views
 {
@@ -10,13 +11,11 @@ namespace TaskPlannerApp.Views
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModels.MainViewModel();
         }
 
-        private void OpenTaskForm(object sender, RoutedEventArgs e)
-        {
-            var taskForm = new TaskFormWindow(this);
-            taskForm.ShowDialog(); 
-        }
+
+
         public void AddTaskToList(string taskName, string author)
         {
             var taskCard = new Border
@@ -24,7 +23,7 @@ namespace TaskPlannerApp.Views
                 Background = new SolidColorBrush(Color.FromRgb(34, 40, 44)),
                 Margin = new Thickness(0, 5, 0, 5),
                 Padding = new Thickness(5),
-                HorizontalAlignment = HorizontalAlignment.Stretch,
+                
                 CornerRadius = new CornerRadius(5),
                 BorderBrush = Brushes.Transparent,
                 BorderThickness = new Thickness(2)

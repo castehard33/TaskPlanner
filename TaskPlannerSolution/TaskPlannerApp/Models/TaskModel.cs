@@ -2,7 +2,7 @@
 {
     public class TaskModel
     {
-        public string? Name { get; set; }
-        public string? Author { get; set; }
+        public string? TaskName { get; set; }
+        public string? TaskAuthor { get; set; }
     }
 }

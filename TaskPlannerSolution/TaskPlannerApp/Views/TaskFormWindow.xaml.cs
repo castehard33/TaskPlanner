@@ -1,35 +1,32 @@
 ﻿using System.Windows;
-using TaskPlannerApp.Views;
 
-namespace TaskPlannerApp
+namespace TaskPlannerApp.Views
 {
     public partial class TaskFormWindow : Window
     {
-        private MainWindow _mainWindow;
+        public string TaskName { get; set; } //problemy przy required więc nullable
+        public string TaskAuthor { get; set; }
 
-        public TaskFormWindow(MainWindow mainWindow)
+        public TaskFormWindow(string taskName, string taskAuthor)
         {
             InitializeComponent();
-            _mainWindow = mainWindow;
+            TaskName = taskName;
+            TaskAuthor = taskAuthor;
         }
 
-        private void AddTask_Click(object sender, RoutedEventArgs e)
+        private void SaveTask(object sender, RoutedEventArgs e)
         {
-            // Pobieramy dane z formularza
-            string taskName = TaskNameTextBox.Text;
-            string author = AuthorTextBox.Text;
+            TaskName = TaskNameTextBox.Text;
+            TaskAuthor = TaskAuthorTextBox.Text;
 
-            if (string.IsNullOrEmpty(taskName) || string.IsNullOrEmpty(author))
+            if (string.IsNullOrWhiteSpace(TaskName) || string.IsNullOrWhiteSpace(TaskAuthor))
             {
-                MessageBox.Show("Proszę uzupełnić wszystkie pola.");
+                MessageBox.Show("Wszystkie pola muszą być wypełnione!", "Błąd", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Przekazujemy dane do głównego okna
-            _mainWindow.AddTaskToList(taskName, author);
-
-            // Zamykamy formularz
-            this.Close();
+            DialogResult = true;
+            Close();
         }
     }
 }
