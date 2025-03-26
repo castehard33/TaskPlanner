@@ -1,14 +1,20 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
+using TaskPlannerApp.Data;
 using System.Windows;
 using TaskPlannerApp.Models;
 using TaskPlannerApp.Views;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace TaskPlannerApp.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+
+        private readonly TaskPlannerContext _context;
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -21,7 +27,25 @@ namespace TaskPlannerApp.ViewModels
 
         public MainViewModel()
         {
+            _context = new TaskPlannerContext();
+            LoadTasks();
+
             AddTaskCommand = new RelayCommand(OpenTaskForm);
+        }
+
+        private void LoadTasks()
+        {
+            TasksToDo = new ObservableCollection<TaskModel>(
+                _context.Tasks.Where(t => t.Status == AppTaskStatus.ToDo).ToList()
+            );
+
+            TasksInProgress = new ObservableCollection<TaskModel>(
+                _context.Tasks.Where(t => t.Status == AppTaskStatus.InProgress).ToList()
+            );
+
+            TasksDone = new ObservableCollection<TaskModel>(
+                _context.Tasks.Where(t => t.Status == AppTaskStatus.Done).ToList()
+            );
         }
 
         private void OpenTaskForm(object? parameter)

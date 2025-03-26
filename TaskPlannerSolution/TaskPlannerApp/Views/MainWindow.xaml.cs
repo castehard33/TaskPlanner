@@ -10,7 +10,6 @@ namespace TaskPlannerApp.Views
     public partial class MainWindow : Window
     {
 
-        private object? _draggedItem;
 
         public MainWindow()
         {
