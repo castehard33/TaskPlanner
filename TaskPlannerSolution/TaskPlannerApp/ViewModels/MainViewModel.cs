@@ -50,8 +50,8 @@ namespace TaskPlannerApp.ViewModels
 
         private void OpenTaskForm(object? parameter)
         {
-            string defaultTaskName = "Wprowadź nazwę zadania";
-            string defaultTaskAuthor = "Wprowadź autora";
+            string defaultTaskName = "Enter task name";
+            string defaultTaskAuthor = "Enter task author";
 
             var taskForm = new TaskFormWindow(defaultTaskName, defaultTaskAuthor);
 

@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Dodaj zadanie" Height="300" Width="400" Background="#1d2125">
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="169*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="28,0,0,0" Grid.Column="1">
             <TextBlock Text="Task name" Foreground="White" Margin="5"/>
             <TextBox x:Name="TaskNameTextBox" Width="200" Margin="5" Padding="5"/>
 
