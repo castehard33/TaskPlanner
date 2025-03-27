@@ -53,7 +53,15 @@
 
                                     <StackPanel>
                                         <TextBlock Text="{Binding TaskName}" FontWeight="Bold"  FontSize="14"  Foreground="White" TextWrapping="Wrap"/>
-                                        <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White"  Margin="0,5,0,0" TextWrapping="Wrap"/>        
+                                        <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White"  Margin="0,5,0,0" TextWrapping="Wrap"/>
+
+
+                                        <Button Content="⇒ Move Task" Margin="0,10,0,0" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right"  Cursor="Hand"
+                                    Command="{Binding DataContext.MoveToInProgressCommand, 
+                                             RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                    CommandParameter="{Binding}" Style="{StaticResource NoHighlightButton}"/>
+
+                                        
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

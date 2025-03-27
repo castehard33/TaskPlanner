@@ -16,8 +16,8 @@ namespace TaskPlannerApp.Models
 
     public enum AppTaskStatus
     {
-        ToDo,
-        InProgress,
-        Done
+        ToDo = 0,
+        InProgress = 1,
+        Done = 2
     }
 }

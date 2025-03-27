@@ -24,6 +24,9 @@ namespace TaskPlannerApp.ViewModels
 
         public ICommand AddTaskCommand { get; }
 
+        public ICommand MoveToInProgressCommand { get; }
+
+
 
         public MainViewModel()
         {
@@ -31,6 +34,7 @@ namespace TaskPlannerApp.ViewModels
             LoadTasks();
 
             AddTaskCommand = new RelayCommand(OpenTaskForm);
+            MoveToInProgressCommand = new RelayCommand(MoveTaskToInProgressCommand);
         }
 
         private void LoadTasks()
@@ -48,21 +52,90 @@ namespace TaskPlannerApp.ViewModels
             );
         }
 
-        private void OpenTaskForm(object? parameter)
+        private async void OpenTaskForm(object? parameter)
         {
-            string defaultTaskName = "Enter task name";
-            string defaultTaskAuthor = "Enter task author";
 
-            var taskForm = new TaskFormWindow(defaultTaskName, defaultTaskAuthor);
+            var taskForm = new TaskFormWindow(
+               taskName: "Enter task name",
+               taskAuthor: "Enter task author"
+           );
 
             if (taskForm.ShowDialog() == true)
             {
-                TasksToDo.Add(new TaskModel { TaskName = taskForm.TaskName, TaskAuthor = taskForm.TaskAuthor });
+                try
+                {
+                    var newTask = new TaskModel
+                    {
+                        TaskName = taskForm.TaskName,
+                        TaskAuthor = taskForm.TaskAuthor,
+                    };
 
-                //MessageBox.Show("Zadanie zostało dodane!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _context.Tasks.Add(newTask);
+                    await _context.SaveChangesAsync();
+
+                    TasksToDo.Add(newTask);
+
+                    MessageBox.Show("Task successfully added to the database!",
+                                    "Success",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error adding task: {ex.Message}",
+                                    "Error",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                }
             }
         }
 
+        private async void MoveTaskToInProgressCommand(object? parameter)
+        {
+            if (parameter is TaskModel task)
+            {
+                try
+                {
+                    // Find the task in the database
+                    var existingTask = await _context.Tasks
+                        .FirstOrDefaultAsync(t => t.Id == task.Id);
 
+                    if (existingTask == null)
+                    {
+                        MessageBox.Show("Task not found.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    // Update status using the enum
+                    existingTask.Status = AppTaskStatus.InProgress;
+
+                    // Save changes
+                    await _context.SaveChangesAsync();
+
+                    // Refresh entire collection
+                    var updatedTasks = await _context.Tasks
+                        .Where(t => t.Status == AppTaskStatus.ToDo)
+                        .ToListAsync();
+
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        TasksToDo.Clear();
+                        foreach (var updatedTask in updatedTasks)
+                        {
+                            TasksToDo.Add(updatedTask);
+                        }
+                    });
+
+                    MessageBox.Show("Task moved to In Progress", "Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error moving task: {ex.Message}", "Error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }
