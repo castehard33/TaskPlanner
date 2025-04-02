@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:TaskPlannerApp.ViewModels" 
-        Title="TaskPlanner" Height="600" Width="900"
+        Title="TaskPlanner" Height="600" Width="950"
         Background="#1d2125">
 
 
@@ -25,54 +25,56 @@
                 <StackPanel>
                     <TextBlock Text="TO DO" FontSize="18" Foreground="#c2c2c2"/>
 
-                    <ListBox ItemsSource="{Binding TasksToDo}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Margin="0,5,0,0" >
+                  
 
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Background" Value="Transparent"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
+                        <ListBox ItemsSource="{Binding TasksToDo}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Margin="0,5,0,0" >
 
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="#22282C" Padding="10" CornerRadius="5"   Width="180" MinHeight="80" HorizontalAlignment="Center" Margin="0,5,0,5">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
 
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Setter Property="BorderBrush" Value="Transparent"/>
-                                            <Setter Property="BorderThickness" Value="2"/>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="BorderBrush" Value="White"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#22282C" Padding="10" CornerRadius="5"   Width="180" MinHeight="80" HorizontalAlignment="Center" Margin="0,5,0,5">
 
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding TaskName}" FontWeight="Bold"  FontSize="14"  Foreground="White" TextWrapping="Wrap"/>
-                                        <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White"  Margin="0,5,0,0" TextWrapping="Wrap"/>
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                <Setter Property="BorderThickness" Value="2"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="BorderBrush" Value="White"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding TaskName}" FontWeight="Bold"  FontSize="14"  Foreground="White" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White"  Margin="0,5,0,0" TextWrapping="Wrap"/>
 
 
-                                        <Button Content="⇒ Move Task" Margin="0,10,0,0" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right"  Cursor="Hand"
+                                            <Button Content="⇒ Move Task" Margin="0,10,0,0" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right"  Cursor="Hand"
                                     Command="{Binding DataContext.MoveToInProgressCommand, 
                                              RelativeSource={RelativeSource AncestorType=ListBox}}" 
                                     CommandParameter="{Binding}" Style="{StaticResource NoHighlightButton}"/>
 
-                                        
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
 
-                    <Button Content="➕ Add Task" Foreground="White" Background="Transparent" FontSize="16" Padding="5" BorderThickness="0" Margin="10" Cursor="Hand"  Style="{StaticResource NoHighlightButton}" Command="{Binding AddTaskCommand}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <Button Content="➕ Add Task" Foreground="White" Background="Transparent" FontSize="16" Padding="5" BorderThickness="0" Margin="10" Cursor="Hand"  Style="{StaticResource NoHighlightButton}" Command="{Binding AddTaskCommand}"/>
 
 
                     
-                    
+
                 </StackPanel>
             </materialDesign:Card>
 
@@ -110,6 +112,9 @@
                                     <StackPanel>
                                         <TextBlock Text="{Binding TaskName}" FontWeight="Bold"  FontSize="14"  Foreground="White" TextWrapping="Wrap"/>
                                         <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White"  Margin="0,5,0,0" TextWrapping="Wrap"/>
+
+                                        <Button Content="⇒ Move Task" Margin="0,10,0,0" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right"  Cursor="Hand" Command="{Binding DataContext.MoveToDoneCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Style="{StaticResource NoHighlightButton}"/>
+
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
@@ -124,19 +129,46 @@
                 <StackPanel>
                     
                     <TextBlock Text="DONE" FontSize="18" Foreground="#c2c2c2"/>
-                    <ListBox ItemsSource="{Binding TasksDone}" Background="Transparent" BorderThickness="0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border Background="#22282C" Padding="5" CornerRadius="5" Margin="5">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding TaskName}" FontWeight="Bold" FontSize="14" Foreground="White"/>
-                                        <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White" Margin="0,5,0,0"/>
-                                    </StackPanel>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="350">
+                        <ListBox ItemsSource="{Binding TasksDone}" Background="Transparent" BorderThickness="0">
+
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#22282C" Padding="10" CornerRadius="5"   Width="180" MinHeight="80" HorizontalAlignment="Center" Margin="0,5,0,5">
+
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                <Setter Property="BorderThickness" Value="2"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="BorderBrush" Value="White"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding TaskName}" FontWeight="Bold"  FontSize="14"  Foreground="White" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding TaskAuthor}" FontSize="12" Foreground="White"  Margin="0,5,0,0" TextWrapping="Wrap"/>
+
+                                            <Button Content="⇒ Move Task" Margin="0,10,0,0" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right"  Cursor="Hand" Command="{Binding DataContext.MoveToDoneCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Style="{StaticResource NoHighlightButton}"/>
+
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        </ScrollViewer>
+
                 </StackPanel>
             </materialDesign:Card>
 
@@ -145,11 +177,8 @@
 
                     <TextBlock Text="Sort by:" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
 
-                    <ComboBox Name="comboBox1" Margin="0,10,0,10">
-                        <ComboBoxItem>Author</ComboBoxItem>
-                        <ComboBoxItem>Name</ComboBoxItem>
-                        <ComboBoxItem>None</ComboBoxItem>
-                        
+                    <ComboBox Margin="0,10,0,10" ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}">
+
                     </ComboBox>
 
                 </StackPanel>

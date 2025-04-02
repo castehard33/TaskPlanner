@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -17,6 +16,9 @@ namespace TaskPlannerApp.ViewModels
         private ObservableCollection<TaskModel> _tasksToDo;
         private ObservableCollection<TaskModel> _tasksInProgress;
         private ObservableCollection<TaskModel> _tasksDone;
+
+        private string _selectedSortOption = "None";
+        private ObservableCollection<string> _sortOptions;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -51,8 +53,34 @@ namespace TaskPlannerApp.ViewModels
             }
         }
 
+        public string SelectedSortOption
+        {
+            get => _selectedSortOption;
+            set
+            {
+                if (_selectedSortOption != value)
+                {
+                    _selectedSortOption = value;
+                    OnPropertyChanged(nameof(SelectedSortOption));
+                    SortTasks();
+                }
+            }
+        }
+
+        public ObservableCollection<string> SortOptions
+        {
+            get => _sortOptions;
+            set
+            {
+                _sortOptions = value;
+                OnPropertyChanged(nameof(SortOptions));
+            }
+        }
+
         public ICommand AddTaskCommand { get; }
         public ICommand MoveToInProgressCommand { get; }
+        public ICommand MoveToDoneCommand { get;  }
+        public ICommand SortCommand { get;  }
 
         public MainViewModel()
         {
@@ -61,17 +89,48 @@ namespace TaskPlannerApp.ViewModels
             _tasksInProgress = new ObservableCollection<TaskModel>();
             _tasksDone = new ObservableCollection<TaskModel>();
 
+            _sortOptions = new ObservableCollection<string> { "None", "Name", "Author" };
+
             LoadAllTasks();
 
             AddTaskCommand = new RelayCommand(OpenTaskForm);
             MoveToInProgressCommand = new RelayCommand(MoveTaskToInProgressCommand);
+            MoveToDoneCommand = new RelayCommand(MoveTaskToDoneCommand);
+            SortCommand = new RelayCommand(SortTasksExecute);
+        }
+
+        private void SortTasksExecute(object? parameter)
+        {
+            SortTasks();
+        }
+
+        private void SortTasks()
+        {
+            switch (SelectedSortOption)
+            {
+                case "Author":
+                    TasksToDo = [.. TasksToDo.OrderBy(t => t.TaskAuthor)];
+                    TasksInProgress = [.. TasksInProgress.OrderBy(t => t.TaskAuthor)];
+                    TasksDone = [.. TasksDone.OrderBy(t => t.TaskAuthor)];
+                    break;
+                case "Name":
+                    TasksToDo = [.. TasksToDo.OrderBy(t => t.TaskName)];
+                    TasksInProgress = [.. TasksInProgress.OrderBy(t => t.TaskName)];
+                    TasksDone = [.. TasksDone.OrderBy(t => t.TaskName)];
+                    break;
+                case "None":
+                default:
+                    TasksToDo = [.. TasksToDo.OrderBy(t => t.Id)];
+                    TasksInProgress = [.. TasksInProgress.OrderBy(t => t.Id)];
+                    TasksDone = [.. TasksDone.OrderBy(t => t.Id)];
+                    break;
+            }
         }
 
         private async void LoadAllTasks()
         {
             try
             {
-                // Get tasks from database
                 var todoTasks = await _context.Tasks
                     .Where(t => t.Status == AppTaskStatus.ToDo)
                     .ToListAsync();
@@ -84,13 +143,16 @@ namespace TaskPlannerApp.ViewModels
                     .Where(t => t.Status == AppTaskStatus.Done)
                     .ToListAsync();
 
-                // Update collections on UI thread
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    // Replace collections entirely instead of modifying them
                     TasksToDo = new ObservableCollection<TaskModel>(todoTasks);
                     TasksInProgress = new ObservableCollection<TaskModel>(inProgressTasks);
                     TasksDone = new ObservableCollection<TaskModel>(doneTasks);
+
+                    if (SelectedSortOption != "None")
+                    {
+                        SortTasks();
+                    }
                 });
             }
             catch (Exception ex)
@@ -120,7 +182,6 @@ namespace TaskPlannerApp.ViewModels
                     _context.Tasks.Add(newTask);
                     await _context.SaveChangesAsync();
 
-                    // Reload all tasks instead of just adding to the collection
                     LoadAllTasks();
 
                     MessageBox.Show("Task successfully added to the database!",
@@ -144,7 +205,6 @@ namespace TaskPlannerApp.ViewModels
             {
                 try
                 {
-                    // Find and update task in database
                     var existingTask = await _context.Tasks
                         .FirstOrDefaultAsync(t => t.Id == task.Id);
 
@@ -155,16 +215,46 @@ namespace TaskPlannerApp.ViewModels
                         return;
                     }
 
-                    // Update status
                     existingTask.Status = AppTaskStatus.InProgress;
 
-                    // Save changes
                     await _context.SaveChangesAsync();
 
-                    // Reload ALL tasks from database - this ensures UI is in sync with DB
                     LoadAllTasks();
 
                     MessageBox.Show("Task moved to In Progress", "Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error moving task: {ex.Message}", "Error",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private async void MoveTaskToDoneCommand(object? parameter)
+        {
+            if (parameter is TaskModel task)
+            {
+                try
+                {
+                    var existingTask = await _context.Tasks
+                        .FirstOrDefaultAsync(t => t.Id == task.Id);
+
+                    if (existingTask == null)
+                    {
+                        MessageBox.Show("Task not found.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    existingTask.Status = AppTaskStatus.Done;
+
+                    await _context.SaveChangesAsync();
+
+                    LoadAllTasks();
+
+                    MessageBox.Show("Task moved to Done section", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
