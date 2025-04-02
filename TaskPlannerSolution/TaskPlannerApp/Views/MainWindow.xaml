@@ -25,9 +25,10 @@
                 <StackPanel>
                     <TextBlock Text="TO DO" FontSize="18" Foreground="#c2c2c2"/>
 
-                  
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="350">
 
-                        <ListBox ItemsSource="{Binding TasksToDo}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Margin="0,5,0,0" >
+
+                    <ListBox ItemsSource="{Binding TasksToDo}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Margin="0,5,0,0" >
 
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
@@ -69,8 +70,8 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-
-                        <Button Content="➕ Add Task" Foreground="White" Background="Transparent" FontSize="16" Padding="5" BorderThickness="0" Margin="10" Cursor="Hand"  Style="{StaticResource NoHighlightButton}" Command="{Binding AddTaskCommand}"/>
+                    </ScrollViewer>
+                    <Button Content="➕ Add Task" Foreground="White" Background="Transparent" FontSize="16" Padding="5" BorderThickness="0" Margin="10" Cursor="Hand"  Style="{StaticResource NoHighlightButton}" Command="{Binding AddTaskCommand}"/>
 
 
                     
@@ -83,7 +84,10 @@
                 <StackPanel>
                     <TextBlock Text="IN PROGRESS" FontSize="18" Foreground="#c2c2c2"/>
 
-                    <ListBox ItemsSource="{Binding TasksInProgress}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Margin="0,5,0,0" >
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="350">
+
+
+                        <ListBox ItemsSource="{Binding TasksInProgress}" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center" Margin="0,5,0,0" >
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -120,7 +124,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
+                  </ScrollViewer>
                 </StackPanel>
             </materialDesign:Card>
 
@@ -177,9 +181,7 @@
 
                     <TextBlock Text="Sort by:" FontSize="18" Foreground="White" HorizontalAlignment="Center" />
 
-                    <ComboBox Margin="0,10,0,10" ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}">
-
-                    </ComboBox>
+                    <ComboBox Margin="0,10,0,10" ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}"/>
 
                 </StackPanel>
             </materialDesign:Card>
