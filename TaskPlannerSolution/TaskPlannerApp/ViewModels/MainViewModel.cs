@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using TaskPlannerApp.Data;
 using TaskPlannerApp.Models;
-using TaskPlannerApp.Views; // Make sure this is correct
+using TaskPlannerApp.Views; 
 
 namespace TaskPlannerApp.ViewModels
 {
@@ -17,7 +15,7 @@ namespace TaskPlannerApp.ViewModels
         private ObservableCollection<TaskModel> _tasksToDo;
         private ObservableCollection<TaskModel> _tasksInProgress;
         private ObservableCollection<TaskModel> _tasksDone;
-        private ObservableCollection<TaskModel> _tasksArchived; // Added for Archive
+        private ObservableCollection<TaskModel> _tasksArchived; 
 
         private string _selectedSortOption = "None";
         private ObservableCollection<string> _sortOptions;

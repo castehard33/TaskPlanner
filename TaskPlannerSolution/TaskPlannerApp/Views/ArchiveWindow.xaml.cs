@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using TaskPlannerApp.Models; // Make sure this namespace is correct
+using TaskPlannerApp.Models; 
 
-namespace TaskPlannerApp.Views // Make sure this namespace is correct
+namespace TaskPlannerApp.Views 
 {
 
     public partial class ArchiveWindow : Window
